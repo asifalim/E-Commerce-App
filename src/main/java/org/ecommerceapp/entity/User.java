@@ -29,16 +29,14 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String name;
+
   @Email
   @Column(nullable = false, unique = true)
   private String email;
 
   @Column(nullable = false)
   private String password;
-
-  private String firstName;
-
-  private String lastName;
 
   private String phoneNumber;
 

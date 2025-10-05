@@ -4,8 +4,12 @@ import java.util.Collection;
 import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import org.ecommerceapp.dto.RegisterRequest;
+import org.ecommerceapp.entity.Order;
 import org.ecommerceapp.entity.User;
+import org.ecommerceapp.enums.OrderStatus;
 import org.ecommerceapp.enums.UserRole;
+import org.ecommerceapp.repository.CartItemRepository;
+import org.ecommerceapp.repository.OrderRepository;
 import org.ecommerceapp.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +25,7 @@ public class UserService implements UserDetailsService {
 
    private final UserRepository userRepository;
    private final PasswordEncoder passwordEncoder;
+   private final OrderRepository orderRepository;
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -51,11 +56,18 @@ public class UserService implements UserDetailsService {
     User user = new User();
     user.setEmail(request.getEmail());
     user.setPassword(passwordEncoder.encode(request.getPassword()));
-    user.setFirstName(request.getFirstName());
-    user.setLastName(request.getLastName());
+    user.setName(request.getName());
     user.setPhoneNumber(request.getPhoneNumber());
     user.setRole(request.getRole());
     user.setEnabled(true);
+
+    Order order = new Order();
+    order.setAmount(0L);
+    order.setTotalAmount(0L);
+    order.setDiscount(0L);
+    order.setUser(user);
+    order.setOrderStatus(OrderStatus.PENDING);
+    orderRepository.save(order);
 
     return userRepository.save(user);
   }
