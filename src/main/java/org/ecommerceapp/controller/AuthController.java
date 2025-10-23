@@ -33,6 +33,7 @@ public class AuthController {
     String token = jwtService.generateToken(userDetails);
 
     AuthResponse response = new AuthResponse(
+        user.getId(),
         token,
         "Registration successful",
         user.getEmail(),
@@ -50,6 +51,7 @@ public class AuthController {
     String token = jwtService.generateToken(userDetails);
 
     AuthResponse response = new AuthResponse(
+        user.getId(),
         token,
         "Login successful",
         user.getEmail(),

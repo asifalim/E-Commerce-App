@@ -1,5 +1,8 @@
 package org.ecommerceapp.service.customer.cart;
 
-public interface CartService {
+import org.ecommerceapp.dto.AddProductInCartDto;
+import org.springframework.http.ResponseEntity;
 
+public interface CartService {
+  ResponseEntity<?> addProductInCart(AddProductInCartDto addProductInCartDto);
 }

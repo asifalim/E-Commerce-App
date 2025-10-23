@@ -9,6 +9,7 @@ import org.ecommerceapp.enums.UserRole;
 @Setter
 @AllArgsConstructor
 public class AuthResponse {
+  private Long id;
   private String token;
   private String message;
   private String email;

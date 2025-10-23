@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.ecommerceapp.dto.CategoryDto;
 import org.ecommerceapp.repository.CategoryRepository;
 import org.ecommerceapp.service.mapper.CategoryMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
